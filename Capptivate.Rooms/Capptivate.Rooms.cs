@@ -10,13 +10,16 @@ namespace Capptivate.Rooms
 		{
 			var settingsBar = new AbsoluteLayout ();
 			settingsBar.HorizontalOptions = LayoutOptions.FillAndExpand;
-			settingsBar.HeightRequest = 32;
+
 			// allow for iOS status bar
-			settingsBar.Padding = new Thickness (0, 20, 0, 0);
+			settingsBar.Padding = new Thickness (0, 20, 0, 40);
 
 			var settingButton = new Button {
-				Image = "settings_filled-32.png"
+				Image = "settings_filled-32.png",
+				WidthRequest = 40
 			};
+
+			settingButton.TextColor = Color.Gray;
 
 			AbsoluteLayout.SetLayoutFlags (settingButton,
 				AbsoluteLayoutFlags.PositionProportional);
@@ -34,9 +37,11 @@ namespace Capptivate.Rooms
 
 			var createButton = new Button ();
 			createButton.Text = "Create Room";
+			createButton.TextColor = Color.Gray;
 
 			var inviteButton = new Button ();
 			inviteButton.Text = "Use Invite";
+			inviteButton.TextColor = Color.Gray;
 
 			AbsoluteLayout.SetLayoutFlags (createButton, AbsoluteLayoutFlags.PositionProportional);
 			AbsoluteLayout.SetLayoutFlags (inviteButton, AbsoluteLayoutFlags.PositionProportional);
@@ -67,20 +72,45 @@ namespace Capptivate.Rooms
 								Orientation = StackOrientation.Horizontal,
 								Children = 
 								{
-									new BoxView
+									new Frame
 									{
+										Padding = new Thickness(10,0,10,0),
 										WidthRequest = 200,
 										HeightRequest=320,
-										BackgroundColor = Color.FromHex("6E35EA")
+										BackgroundColor = Color.FromHex("6E35EA"),
+										Content = new Label{
+											Text = "",
+											TextColor = Color.White
+										}
 									},
-									new BoxView
+									new Frame
 									{
+										Padding = new Thickness(10,0,10,0),
 										WidthRequest = 200,
 										HeightRequest=320,
-										BackgroundColor = Color.FromHex("D07B2B")
+										BackgroundColor = Color.FromHex("D07B2B"),
+										Content = new StackLayout
+										{
+											Children=
+											{
+												new Label
+												{
+													VerticalOptions = LayoutOptions.Center,
+													Text = "Rooms Tips and Tricks",
+													TextColor = Color.White,
+													FontAttributes = FontAttributes.Bold
+												},
+												new Label
+												{
+													Text = "Get pro tips for how to use Rooms. Moderatred by members of the Rooms team.",
+													TextColor = Color.White
+												}
+											}
+										}
 									},
-									new BoxView
+									new Frame
 									{
+										Padding = new Thickness(10,0,10,0),
 										WidthRequest = 200,
 										HeightRequest=320,
 										BackgroundColor = Color.FromHex("3C97C9")
